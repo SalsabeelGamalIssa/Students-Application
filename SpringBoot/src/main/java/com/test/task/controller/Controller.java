@@ -2,7 +2,7 @@ package com.test.task.controller;
 
 
 import com.test.task.entity.Students;
-import com.test.task.repository.StudentsRepository;
+import com.test.task.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,29 +17,27 @@ public class Controller {
 
 
     @Autowired
-    StudentsRepository studentsRepository;
+    StudentService studentService;
 
 
     @GetMapping("")
     private List<Students> getAllStudents() {
-        List<Students> students = new ArrayList<Students>();
-        studentsRepository.findAll().forEach(student -> students.add(student));
-        return students;
+        return studentService.getAllStudents();
     }
 
 
     @GetMapping("/{studentId}")
     private Students getStudent(@PathVariable("studentId") long studentId) {
-         return studentsRepository.findById((int) studentId).get();
+         return studentService.getStudent(studentId);
     }
 
 
     @DeleteMapping("/{studentId}")
     private void delete(@PathVariable("studentId") long studentId) {
 
-       //  Students student=  studentsRepository.findById((int) studentId).get();
 
-         studentsRepository.deleteById((int)studentId);
+
+         studentService.delete(studentId);
 
 
 
@@ -49,8 +47,8 @@ public class Controller {
     @PutMapping("")
     private Students update(@RequestBody Students student) {
 
-        studentsRepository.save(student);
-        return student;
+        return  studentService.update(student);
+
     }
 
 
@@ -58,8 +56,8 @@ public class Controller {
     @PostMapping("")
     private Students Add(@RequestBody Students student) {
 
-        studentsRepository.save(student);
-        return student;
+        return  studentService.Add(student);
+
     }
 
 
