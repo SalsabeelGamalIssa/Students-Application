@@ -1,0 +1,77 @@
+
+<section class="Meal mt-3">
+
+  <div class="container fix-footer">
+
+    <div class="row p-3 pt-4">
+      <button
+      (click)="downloadCSV()"
+      type="button"
+      class="btn  export mr-3 rounded"
+      style="background-color: #a3b0d1;"
+    >
+      Export CSV
+    </button>
+
+
+    <button
+    (click)="addStudent()"
+    type="button"
+    class="btn btn-primary export rounded"
+    style="margin-left: 865px;"
+  >
+    +Add
+  </button>
+      <table class="table table-striped">
+        <thead>
+          <tr style="background-color: #1167d8; ">
+            <th>#</th>
+            <th>English Name</th>
+            <th>Arabic Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th></th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students; let currentIndex = index">
+            <td>{{ currentIndex + 1 }}</td>
+            <td>
+              {{ student.englishName }}
+            </td>
+            <td>
+              {{ student.arabicName }}
+            </td>
+            <td>
+              {{ student.email }}
+            </td>
+            <td>
+              {{ student.address }}
+            </td>
+
+            <td>
+              <button
+                (click)="edit(currentIndex)"
+                type="button"
+                class="btn btn-success"
+              >
+                Edit
+              </button>
+            </td>
+
+            <td>
+              <button
+                (click)="delete(currentIndex)"
+                type="button"
+                class="btn btn-danger"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
